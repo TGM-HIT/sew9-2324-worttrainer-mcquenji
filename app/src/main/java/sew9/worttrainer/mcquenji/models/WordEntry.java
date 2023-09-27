@@ -28,10 +28,21 @@ public class WordEntry implements Serializable {
      * 
      * @param word The word that is associated with the {@link #url}
      * @param url  The url that is associated with the {@link #word}
+     * 
+     * @throws IllegalArgumentException if the {@link #url} is not a valid url.
+     *                                  See {@link #validateUrl()}
+     * @throws IllegalArgumentException if the {@link #word} or the {@link #url} is
+     *                                  null.
      */
     public WordEntry(String word, String url) {
         this.word = word;
         this.url = url;
+
+        if (word == null || url == null) {
+            throw new IllegalArgumentException("The word or the url must not be null");
+        }
+
+        assertValidUrl();
     }
 
     /**
@@ -41,5 +52,15 @@ public class WordEntry implements Serializable {
      */
     public boolean validateUrl() {
         return url.matches(URL_REGEX);
+    }
+
+    /**
+     * Throws an {@link IllegalArgumentException} if the {@link #url} is not a
+     * valid url.
+     */
+    public void assertValidUrl() {
+        if (!validateUrl()) {
+            throw new IllegalArgumentException("The url is not valid");
+        }
     }
 }
