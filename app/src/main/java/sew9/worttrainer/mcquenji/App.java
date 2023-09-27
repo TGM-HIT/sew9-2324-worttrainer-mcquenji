@@ -3,9 +3,19 @@
  */
 package sew9.worttrainer.mcquenji;
 
-public class App {
+import javafx.application.Application;
+
+public class App extends Application {
 
     public static void main(String[] args) {
-        System.out.println("Hello world.");
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage stage) {
+        // find more themes in 'atlantafx.base.theme' package
+        Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
+
+        // the rest of the code ...
     }
 }

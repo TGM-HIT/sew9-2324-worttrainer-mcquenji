@@ -9,6 +9,14 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+}
+
+
+javafx {
+    version = "17"
+    modules = [ 'javafx.controls' ]
 }
 
 repositories {
@@ -23,8 +31,10 @@ dependencies {
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.1-jre'
 
-    // https://mvnrepository.com/artifact/org.json/json
-    implementation group: 'org.json', name: 'json', version: '20230618'
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.15.2'
+
+    implementation 'io.github.mkpaz:atlantafx-base:2.0.1'
 }
 
 application {
