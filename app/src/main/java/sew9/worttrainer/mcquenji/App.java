@@ -3,19 +3,26 @@
  */
 package sew9.worttrainer.mcquenji;
 
+import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
 
 public class App extends Application {
 
     public static void main(String[] args) {
         launch(args);
+
     }
 
     @Override
-    public void start(Stage stage) {
-        // find more themes in 'atlantafx.base.theme' package
+    public void start(Stage primaryStage) throws Exception {
         Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
 
-        // the rest of the code ...
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui.fxml"));
+
+        primaryStage.setScene(loader.load());
+
+        primaryStage.show();
     }
 }
