@@ -32,8 +32,9 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import com.gluonhq.charm.glisten.control.Icon?>
+<?import atlantafx.base.controls.Spacer?>
 <?import com.gluonhq.charm.glisten.control.TextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -84,17 +85,21 @@
         </Menu>
       </menus>
     </MenuBar>
-      <HBox prefHeight="255.0" prefWidth="640.0">
+      <HBox prefHeight="21.0" prefWidth="640.0">
          <children>
-            <Icon content="HELP_OUTLINE" />
-            <Label id="totalLabel" text="Label" />
-            <Icon content="HELP_OUTLINE" />
-            <Label id="correctLabel" text="Label" />
-            <Icon content="HELP_OUTLINE" />
-            <Label id="wrongLabel" text="Label" />
+            <Spacer />
+            <FontAwesomeIconView fill="#1b91bc" glyphName="GAMEPAD" size="20" wrappingWidth="25.428571701049805" />
+            <Label id="totalLabel" prefHeight="18.0" prefWidth="30.0" style="-fx-font-weight: bold;" text="0" />
+            <Spacer />
+            <FontAwesomeIconView fill="#1b91bc" glyphName="TIMES" size="20" wrappingWidth="19.714285850524902" />
+            <Label id="correctLabel" prefHeight="18.0" prefWidth="30.0" style="-fx-font-weight: bold;" text="0" />
+            <Spacer />
+            <FontAwesomeIconView fill="#1b91bc" glyphName="CHECK" glyphStyle="Regular" size="20" wrappingWidth="22.0" />
+            <Label id="wrongLabel" prefHeight="18.0" prefWidth="30.0" style="-fx-font-weight: bold;" text="0" />
+            <Spacer />
          </children>
       </HBox>
-      <ImageView id="image" fitHeight="316.0" fitWidth="639.0" pickOnBounds="true" preserveRatio="true" />
-      <TextField id="guess" promptText="What do you see on the image?" />
+      <ImageView id="image" fitHeight="330.0" fitWidth="639.0" pickOnBounds="true" preserveRatio="true" />
+      <TextField id="guess" prefHeight="28.0" prefWidth="640.0" promptText="What do you see on the image?" />
   </children>
 </VBox>

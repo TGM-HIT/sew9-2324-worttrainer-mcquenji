@@ -6,22 +6,32 @@ package sew9.worttrainer.mcquenji;
 import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.*;
 import javafx.stage.Stage;
 
 public class App extends Application {
 
     public static void main(String[] args) {
         launch(args);
-
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        var fxml = getClass().getClassLoader().getResource("ui.fxml");
+
+        System.out.println(fxml);
+
+        // Load the FXML file
+        Parent root = FXMLLoader.load(fxml);
+
+        // Create a scene with the loaded root node
+        Scene scene = new Scene(root);
+
+        // Set the scene to the stage and show it
+        primaryStage.setScene(scene);
+
         Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui.fxml"));
-
-        primaryStage.setScene(loader.load());
 
         primaryStage.show();
     }
