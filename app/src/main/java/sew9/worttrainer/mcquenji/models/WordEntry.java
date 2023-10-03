@@ -12,14 +12,14 @@ public class WordEntry implements Serializable {
     /**
      * The word that is associated with the {@link #url}
      */
-    final String word;
+    public final String word;
 
     /**
      * The url that is associated with the {@link #word}
      * 
      * This url has to be a link to an image.
      */
-    final String url;
+    public final String url;
 
     final String URL_REGEX = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
 

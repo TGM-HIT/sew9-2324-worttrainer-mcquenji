@@ -1,4 +1,4 @@
-package sew9.worttrainer.mcquenji.models;
+package sew9.worttrainer.mcquenji.models.validation;
 
 import java.io.Serializable;
 

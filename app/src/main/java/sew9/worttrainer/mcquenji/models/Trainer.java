@@ -3,6 +3,9 @@ package sew9.worttrainer.mcquenji.models;
 import java.io.Serializable;
 import java.util.*;
 
+import sew9.worttrainer.mcquenji.models.validation.CaseSensitiveValadtionAlgorithm;
+import sew9.worttrainer.mcquenji.models.validation.ValidationAlgorithm;
+
 /**
  * Handles the logic for the training game.
  * 

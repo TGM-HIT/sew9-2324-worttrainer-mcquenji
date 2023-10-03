@@ -1,4 +1,6 @@
-package sew9.worttrainer.mcquenji.models;
+package sew9.worttrainer.mcquenji.models.validation;
+
+import sew9.worttrainer.mcquenji.models.Trainer;
 
 /**
  * Base class for any algorithm that validates a {@link Trainer#guess(String)
