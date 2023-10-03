@@ -8,6 +8,15 @@ import java.net.URL;
 
 import javax.swing.*;
 
+/**
+ * Controller for the {@link View} and {@link Trainer}.
+ * 
+ * This class is responsible for handling events from the View and updating the
+ * View and Trainer accordingly.
+ * 
+ * @author Benjamin McEachnie
+ * @version 2023-10-03
+ */
 public class Controller {
     private Trainer trainer;
     private View view;
@@ -31,7 +40,10 @@ public class Controller {
             view.setImage(url);
         } catch (Exception e) {
             view.setFeedback("Error loading image.");
+            System.out.println("Error while loading image: " + e);
         }
+
+        view.clearGuessField();
     }
 
     private void handleGuess() {
@@ -42,22 +54,33 @@ public class Controller {
         } else {
             view.setFeedback("Incorrect. Try again.");
         }
+
+        view.setTotalGuesses(trainer.getTotalGuesses());
+        view.setCorrectGuesses(trainer.getCorrectGuesses());
+        view.setIncorrectGuesses(trainer.getIncorrectGuesses());
     }
 
     private void handleAddImage() {
-        JFileChooser fileChooser = new JFileChooser();
-        int result = fileChooser.showOpenDialog(view);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            String imagePath = fileChooser.getSelectedFile().getAbsolutePath();
-            String word = JOptionPane.showInputDialog(view, "Enter the word associated with this image:");
-            if (word != null && !word.trim().isEmpty()) {
-                WordEntry newEntry = new WordEntry(word, "file://" + imagePath);
-                trainer.addEntry(newEntry);
-                view.setFeedback("Image added successfully!");
-            } else {
-                view.setFeedback("Invalid word. Image not added.");
-            }
+        String word = JOptionPane.showInputDialog(view, "Enter the word associated with the image:");
+        if (word == null || word.trim().isEmpty())
+            return;
+
+        String imagePath = JOptionPane.showInputDialog(view, "Enter the URL or path to the image:");
+
+        if (imagePath == null || imagePath.trim().isEmpty())
+            return;
+
+        try {
+            WordEntry newEntry = new WordEntry(word, imagePath);
+
+            trainer.addEntry(newEntry);
+            view.setFeedback("Image added successfully!");
+        } catch (Exception e) {
+            view.setFeedback("Invalid URL or path. Image not added.");
+
+            System.out.println("Error while adding image: " + e);
         }
+
     }
 
     private void handleValidationAlgorithmChange() {
@@ -72,5 +95,11 @@ public class Controller {
 
     public void show() {
         view.setVisible(true);
+    }
+
+    private void handleLoad() {
+    }
+
+    private void handleSave() {
     }
 }

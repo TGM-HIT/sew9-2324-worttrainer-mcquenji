@@ -8,8 +8,10 @@ public class App {
     public static void main(String[] args) {
         // Sample entries for testing
         WordEntry[] entries = {
-                new WordEntry("apple", "https://example.com/apple.jpg"),
-                new WordEntry("banana", "https://example.com/banana.jpg")
+                new WordEntry("Apple",
+                        "https://www.macwelt.de/wp-content/uploads/2023/04/4331547_original.jpg?quality=50&strip=all"),
+                new WordEntry("Banana",
+                        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Single.jpg/800px-Banana-Single.jpg")
         };
         Trainer trainer = new Trainer(entries);
         Controller controller = new Controller(trainer);
