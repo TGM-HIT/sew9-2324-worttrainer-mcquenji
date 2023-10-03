@@ -1,10 +1,12 @@
 package sew9.worttrainer.mcquenji.serialization;
 
-public class Deserializer {
+import java.io.File;
+
+public abstract class Deserializer {
     /**
      * The path to the file to deserialize from.
      */
-    final String path;
+    protected final File file;
 
     /**
      * Constructor
@@ -12,10 +14,15 @@ public class Deserializer {
      * @param path The path to the file to deserialize from.
      */
     public Deserializer(String path) {
-        this.path = path;
+        file = new File(path);
     }
 
-    public Object deserialize() {
-        return null;
-    }
+    /**
+     * Deserializes an object from the file at {@link #file}
+     * 
+     * @return The deserialized object.
+     * 
+     * @throws Exception If an error occurs during deserialization.
+     */
+    public abstract Object deserialize() throws Exception;
 }

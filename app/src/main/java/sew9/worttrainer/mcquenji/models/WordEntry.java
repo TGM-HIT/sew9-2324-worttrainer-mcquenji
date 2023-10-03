@@ -63,4 +63,9 @@ public class WordEntry implements Serializable {
             throw new IllegalArgumentException("The url is not valid");
         }
     }
+
+    @Override
+    public String toString() {
+        return String.format("WordEntry[word=%s, url=%s]", word, url);
+    }
 }

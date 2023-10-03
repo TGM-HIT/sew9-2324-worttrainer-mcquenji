@@ -3,6 +3,8 @@ package sew9.worttrainer.mcquenji.models;
 import java.io.Serializable;
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import sew9.worttrainer.mcquenji.models.validation.CaseSensitiveValadtionAlgorithm;
 import sew9.worttrainer.mcquenji.models.validation.ValidationAlgorithm;
 
@@ -20,6 +22,7 @@ public class Trainer implements Serializable {
     private int totalGuesses;
     private int correctGuesses;
 
+    @JsonIgnore
     private ValidationAlgorithm validationAlgorithm;
 
     /**
@@ -177,5 +180,11 @@ public class Trainer implements Serializable {
      */
     public ValidationAlgorithm getValidationAlgorithm() {
         return validationAlgorithm;
+    }
+
+    @Override
+    public String toString() {
+        return "Trainer [entries=" + entries + ", currentEntry=" + currentEntry + ", totalGuesses=" + totalGuesses
+                + ", correctGuesses=" + correctGuesses + ", validationAlgorithm=" + validationAlgorithm + "]";
     }
 }

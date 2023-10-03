@@ -3,4 +3,6 @@
         "app/src/main/java"
     ],
     "java.compile.nullAnalysis.mode": "automatic",
+    "java.autobuild.enabled": true,
+    "java.configuration.updateBuildConfiguration": "automatic",
 }

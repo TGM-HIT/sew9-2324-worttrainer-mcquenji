@@ -1,13 +1,16 @@
 package sew9.worttrainer.mcquenji.serialization;
 
+import java.io.File;
+
 /**
  * Serializes objects to a file.
  */
-public class Serializer {
+public abstract class Serializer {
     /**
-     * The path to the file to serialize to.
+     * The file to serialize to.
+     * 
      */
-    final String path;
+    protected final File file;
 
     /**
      * Constructor
@@ -15,9 +18,15 @@ public class Serializer {
      * @param path The path to the file to serialize to.
      */
     public Serializer(String path) {
-        this.path = path;
+        file = new File(path);
     }
 
-    public void serialize(Object object) {
-    }
+    /**
+     * Serializes an object to the file at {@link #file}
+     * 
+     * @param object The object to serialize.
+     * 
+     * @throws Exception If an error occurs during serialization.
+     */
+    public abstract void serialize(Object object) throws Exception;
 }

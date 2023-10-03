@@ -38,6 +38,7 @@ public class View extends JFrame {
 
         // Image in the center
         imageLabel = new JLabel();
+        imageLabel.setHorizontalAlignment(JLabel.CENTER);
         add(imageLabel, BorderLayout.CENTER);
 
         // Text bar at the bottom
@@ -49,6 +50,7 @@ public class View extends JFrame {
 
         // Feedback label
         feedbackLabel = new JLabel("Guess the word for the image!");
+        feedbackLabel.setHorizontalAlignment(JLabel.CENTER);
         northPanel.add(feedbackLabel, BorderLayout.NORTH);
 
         // Load, Save, and Add buttons
@@ -110,8 +112,9 @@ public class View extends JFrame {
     }
 
     public void setImage(URL imageUrl) throws IOException {
-        BufferedImage image = ImageIO.read(imageUrl);
-        ImageIcon icon = new ImageIcon(image);
+        BufferedImage img = ImageIO.read(imageUrl);
+
+        ImageIcon icon = new ImageIcon(img);
         imageLabel.setIcon(icon);
     }
 
