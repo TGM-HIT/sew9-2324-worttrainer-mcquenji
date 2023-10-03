@@ -2,8 +2,6 @@ package sew9.worttrainer.mcquenji;
 
 import sew9.worttrainer.mcquenji.controller.Controller;
 import sew9.worttrainer.mcquenji.models.*;
-import sew9.worttrainer.mcquenji.serialization.*;
-import sew9.worttrainer.mcquenji.serialization.json.*;
 
 public class App {
 
