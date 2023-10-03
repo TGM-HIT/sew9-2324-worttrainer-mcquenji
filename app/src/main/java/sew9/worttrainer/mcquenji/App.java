@@ -7,9 +7,13 @@ import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class App extends Application {
+    private Label totalLabel;
+    private Label correctLabel;
+    private Label wrongLabel;
 
     public static void main(String[] args) {
         launch(args);
@@ -34,5 +38,8 @@ public class App extends Application {
         Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
 
         primaryStage.show();
+
+        primaryStage.setTitle("Wort Trainer in fucking java ich hasse es");
     }
+
 }
