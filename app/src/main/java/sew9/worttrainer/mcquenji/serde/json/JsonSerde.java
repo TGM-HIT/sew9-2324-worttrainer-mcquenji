@@ -1,9 +1,6 @@
 package sew9.worttrainer.mcquenji.serde.json;
 
 import java.io.File;
-import java.util.List;
-
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import sew9.worttrainer.mcquenji.serde.*;

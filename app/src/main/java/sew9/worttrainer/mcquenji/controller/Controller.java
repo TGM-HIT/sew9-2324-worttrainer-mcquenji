@@ -3,11 +3,9 @@ package sew9.worttrainer.mcquenji.controller;
 import sew9.worttrainer.mcquenji.models.*;
 import sew9.worttrainer.mcquenji.models.validation.*;
 import sew9.worttrainer.mcquenji.serde.ISerde;
-import sew9.worttrainer.mcquenji.serde.json.JsonSerde;
 import sew9.worttrainer.mcquenji.view.*;
 
 import java.io.File;
-import java.net.URL;
 
 import javax.swing.*;
 
