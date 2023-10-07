@@ -50,12 +50,13 @@ public class Trainer implements Serializable {
      * @throws IllegalArgumentException if {@link #entries} is null.
      */
     public Trainer(WordEntry[] entries) {
-        // make entries mutable, as `Arrays.asList` returns an immutable list
-        this.entries = new ArrayList<>(Arrays.asList(entries));
 
         if (entries == null) {
             throw new IllegalArgumentException("The entries must not be null");
         }
+
+        // make entries mutable, as `Arrays.asList` returns an immutable list
+        this.entries = new ArrayList<>(Arrays.asList(entries));
 
         validationAlgorithm = new CaseSensitiveValadtionAlgorithm();
     }
