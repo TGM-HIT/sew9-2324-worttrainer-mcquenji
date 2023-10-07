@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import sew9.worttrainer.mcquenji.models.validation.CaseSensitiveValadtionAlgorithm;
 import sew9.worttrainer.mcquenji.models.validation.ValidationAlgorithm;
@@ -14,6 +15,7 @@ import sew9.worttrainer.mcquenji.models.validation.ValidationAlgorithm;
  * @author Benjamin McEachnie
  * @version 2023-09-27
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Trainer implements Serializable {
     private List<WordEntry> entries;
 
@@ -24,6 +26,18 @@ public class Trainer implements Serializable {
 
     @JsonIgnore
     private ValidationAlgorithm validationAlgorithm;
+
+    /**
+     * Constructor.
+     * 
+     * Defaults to {@link CaseSensitiveValadtionAlgorithm} as
+     * {@link #validationAlgorithm validation algorithm}.
+     * 
+     * {@link #entries} is initialized to an empty list.
+     */
+    public Trainer() {
+        this(new WordEntry[0]);
+    }
 
     /**
      * Constructor.
@@ -44,6 +58,22 @@ public class Trainer implements Serializable {
         }
 
         validationAlgorithm = new CaseSensitiveValadtionAlgorithm();
+    }
+
+    public void setCorrectGuesses(int correctGuesses) {
+        this.correctGuesses = correctGuesses;
+    }
+
+    public void setCurrentEntry(WordEntry currentEntry) {
+        this.currentEntry = currentEntry;
+    }
+
+    public void setEntries(List<WordEntry> entries) {
+        this.entries = entries;
+    }
+
+    public void setTotalGuesses(int totalGuesses) {
+        this.totalGuesses = totalGuesses;
     }
 
     /**
@@ -151,7 +181,7 @@ public class Trainer implements Serializable {
 
         totalGuesses++;
 
-        if (validationAlgorithm.validate(guess, currentEntry.word)) {
+        if (validationAlgorithm.validate(guess, currentEntry.getWord())) {
             correctGuesses++;
 
             currentEntry = null;

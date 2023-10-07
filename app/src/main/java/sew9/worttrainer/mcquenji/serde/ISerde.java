@@ -2,6 +2,8 @@ package sew9.worttrainer.mcquenji.serde;
 
 import java.io.File;
 
+import sew9.worttrainer.mcquenji.serde.json.JsonSerde;
+
 /**
  * Interface for serialization and deserialization.
  * 
@@ -10,7 +12,7 @@ import java.io.File;
  * @author Benjamin McEachnie
  * @version 2023-10-03
  */
-public interface Serde {
+public interface ISerde {
 
     /**
      * Deserializes an object from given path.
@@ -21,7 +23,7 @@ public interface Serde {
      * 
      * @throws Exception If an error occurs during deserialization.
      */
-    public Object deserialize(String path) throws Exception;
+    public <T> T deserialize(String path, Class<T> type) throws Exception;
 
     /**
      * Deserializes an object from given file.
@@ -32,7 +34,7 @@ public interface Serde {
      * 
      * @throws Exception If an error occurs during deserialization.
      */
-    public Object deserialize(File file) throws Exception;
+    public <T> T deserialize(File file, Class<T> type) throws Exception;
 
     /**
      * Serializes an object to the given file.
@@ -53,4 +55,9 @@ public interface Serde {
      * @throws Exception If an error occurs during serialization.
      */
     public void serialize(Object object, String path) throws Exception;
+
+    /**
+     * The instance to use for serialization and deserialization in the application.
+     */
+    public static final ISerde INSTANCE = new JsonSerde();
 }

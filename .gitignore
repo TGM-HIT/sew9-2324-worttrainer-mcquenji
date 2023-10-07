@@ -7,3 +7,6 @@ build
 *.class
 
 bin
+
+# Wort Trainser save files
+*.wts

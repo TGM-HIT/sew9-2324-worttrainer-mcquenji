@@ -12,16 +12,32 @@ public class WordEntry implements Serializable {
     /**
      * The word that is associated with the {@link #url}
      */
-    public final String word;
+    private String word;
 
     /**
      * The url that is associated with the {@link #word}
      * 
      * This url has to be a link to an image.
      */
-    public final String url;
+    private String url;
 
     final String URL_REGEX = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+
+    /**
+     * Empty constructor for serialization.
+     * 
+     * This constructor will set the {@link #word} and {@link #url} to null.
+     * Do not use this constructor manually.
+     * 
+     * @see sew9.worttrainer.mcquenji.serde.json.JsonSerde
+     * @see sew9.worttrainer.mcquenji.serde.ISerde
+     * 
+     * @deprecated This constructor is only used for serialization.
+     */
+    public WordEntry() {
+        url = null;
+        word = null;
+    }
 
     /**
      * Constructor
@@ -67,5 +83,21 @@ public class WordEntry implements Serializable {
     @Override
     public String toString() {
         return String.format("WordEntry[word=%s, url=%s]", word, url);
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getWord() {
+        return word;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setWord(String word) {
+        this.word = word;
     }
 }

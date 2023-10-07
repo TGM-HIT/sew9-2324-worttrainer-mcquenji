@@ -1,15 +1,17 @@
 package sew9.worttrainer.mcquenji.serde.json;
 
 import java.io.File;
+import java.util.List;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import sew9.worttrainer.mcquenji.serde.*;
 
 /**
- * Implementation of {@link Serde} for JSON.
+ * Implementation of {@link ISerde} for JSON.
  */
-public class JsonSerde implements Serde {
+public class JsonSerde implements ISerde {
     private final ObjectMapper mapper;
 
     public JsonSerde() {
@@ -22,13 +24,14 @@ public class JsonSerde implements Serde {
     }
 
     @Override
-    public Object deserialize(File file) throws Exception {
-        return mapper.readValue(file, Object.class);
+    public <T> T deserialize(File file, Class<T> type) throws Exception {
+        return mapper.readValue(file, type);
+
     }
 
     @Override
-    public Object deserialize(String path) throws Exception {
-        return deserialize(new File(path));
+    public <T> T deserialize(String path, Class<T> type) throws Exception {
+        return deserialize(new File(path), type);
     }
 
     @Override

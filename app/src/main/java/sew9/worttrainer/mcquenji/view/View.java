@@ -111,8 +111,9 @@ public class View extends JFrame {
         return validationAlgorithmDropdown;
     }
 
-    public void setImage(URL imageUrl) throws IOException {
-        BufferedImage img = ImageIO.read(imageUrl);
+    public void setImage(String imageUrl) throws IOException {
+
+        BufferedImage img = ImageIO.read(new URL(imageUrl));
 
         ImageIcon icon = new ImageIcon(img);
         imageLabel.setIcon(icon);

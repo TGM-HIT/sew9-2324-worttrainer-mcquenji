@@ -2,8 +2,11 @@ package sew9.worttrainer.mcquenji.controller;
 
 import sew9.worttrainer.mcquenji.models.*;
 import sew9.worttrainer.mcquenji.models.validation.*;
+import sew9.worttrainer.mcquenji.serde.ISerde;
+import sew9.worttrainer.mcquenji.serde.json.JsonSerde;
 import sew9.worttrainer.mcquenji.view.*;
 
+import java.io.File;
 import java.net.URL;
 
 import javax.swing.*;
@@ -21,6 +24,11 @@ public class Controller {
     private Trainer trainer;
     private View view;
 
+    /**
+     * The name of the save file.
+     */
+    public static final String SAVE_FILE = "save.wts";
+
     public Controller(Trainer trainer) {
         this.trainer = trainer;
         this.view = new View();
@@ -29,19 +37,31 @@ public class Controller {
         view.getGuessField().addActionListener(e -> handleGuess());
         view.getAddButton().addActionListener(e -> handleAddImage());
         view.getValidationAlgorithmDropdown().addActionListener(e -> handleValidationAlgorithmChange());
+        view.getSaveButton().addActionListener(e -> handleSave());
+        view.getLoadButton().addActionListener(e -> handleLoad());
 
-        loadRandomEntry();
+        if (trainer.getCurrentEntry() == null) {
+            loadRandomEntry();
+        } else {
+            updateUI();
+        }
     }
 
-    private void loadRandomEntry() {
-        WordEntry entry = trainer.getRandomEntry();
+    private void updateUI() {
+        view.setTotalGuesses(trainer.getTotalGuesses());
+        view.setCorrectGuesses(trainer.getCorrectGuesses());
+        view.setIncorrectGuesses(trainer.getIncorrectGuesses());
+
         try {
-            URL url = new URL(entry.url);
-            view.setImage(url);
+            view.setImage(trainer.getCurrentEntry().getUrl());
         } catch (Exception e) {
             view.setFeedback("Error loading image.");
             System.out.println("Error while loading image: " + e);
         }
+    }
+
+    private void loadRandomEntry() {
+        updateUI();
 
         view.clearGuessField();
     }
@@ -55,9 +75,7 @@ public class Controller {
             view.setFeedback("Incorrect. Try again.");
         }
 
-        view.setTotalGuesses(trainer.getTotalGuesses());
-        view.setCorrectGuesses(trainer.getCorrectGuesses());
-        view.setIncorrectGuesses(trainer.getIncorrectGuesses());
+        updateUI();
     }
 
     private void handleAddImage() {
@@ -98,8 +116,31 @@ public class Controller {
     }
 
     private void handleLoad() {
+        File f = new File(SAVE_FILE);
+
+        if (f.exists()) {
+            try {
+                trainer = ISerde.INSTANCE.deserialize(f, Trainer.class);
+                view.setFeedback("Save loaded successfully!");
+
+                updateUI();
+            } catch (Exception e) {
+                view.setFeedback("Error loading save.");
+                System.out.println("Error while loading save: " + e);
+            }
+        } else {
+            view.setFeedback("No save found.");
+        }
+
     }
 
     private void handleSave() {
+        try {
+            ISerde.INSTANCE.serialize(trainer, SAVE_FILE);
+            view.setFeedback("Save successful!");
+        } catch (Exception e) {
+            view.setFeedback("Error saving file.");
+            System.out.println("Error while saving file: " + e);
+        }
     }
 }
