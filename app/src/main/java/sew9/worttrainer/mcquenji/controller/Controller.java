@@ -59,6 +59,8 @@ public class Controller {
     }
 
     private void loadRandomEntry() {
+        trainer.getRandomEntry();
+
         updateUI();
 
         view.clearGuessField();

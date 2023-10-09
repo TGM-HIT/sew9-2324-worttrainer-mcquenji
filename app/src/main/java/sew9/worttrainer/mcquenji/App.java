@@ -6,7 +6,7 @@ import sew9.worttrainer.mcquenji.serde.*;
 
 public class App {
 
-    static Trainer initNewTrainer() {
+    static Trainer initDefaultTrainer() {
         WordEntry[] entries = {
                 new WordEntry("Apple",
                         "https://www.macwelt.de/wp-content/uploads/2023/04/4331547_original.jpg?quality=50&strip=all"),
@@ -26,9 +26,13 @@ public class App {
         try {
             trainer = serde.deserialize(Controller.SAVE_FILE, Trainer.class);
         } catch (Exception e) {
-            trainer = initNewTrainer();
+            trainer = null;
 
             System.out.println("No save file found. Using default.");
+        }
+
+        if (trainer == null) {
+            trainer = initDefaultTrainer();
         }
 
         Controller controller = new Controller(trainer);
